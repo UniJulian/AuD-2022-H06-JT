@@ -1,14 +1,15 @@
 package h06;
 
 public class Hash2IndexFct<T> implements Fct2Int<T> {
-    /**
-     * Offset used in calculation.
-     */
-    private final int offset;
-    /**
-     * Table size used in calculation.
-     */
-    private int tableSize;
+	/**
+	 * Table size used in calculation.
+	 */
+	private int tableSize;
+
+	/**
+	 * Offset used in calculation.
+	 */
+	private final int offset;
 
     /**
      * Creates a new hash function h(x) = (x + offset) mod tableSize.
@@ -17,8 +18,8 @@ public class Hash2IndexFct<T> implements Fct2Int<T> {
      * @param offset        Offset used in calculation.
      */
     public Hash2IndexFct(int initTableSize, int offset) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        this.tableSize = initTableSize;
+        this.offset = offset;
     }
 
     /**
@@ -40,8 +41,7 @@ public class Hash2IndexFct<T> implements Fct2Int<T> {
      */
     @Override
     public int getTableSize() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+		return tableSize;
     }
 
     /**
@@ -51,7 +51,6 @@ public class Hash2IndexFct<T> implements Fct2Int<T> {
      */
     @Override
     public void setTableSize(int tableSize) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+		this.tableSize = tableSize;
     }
 }

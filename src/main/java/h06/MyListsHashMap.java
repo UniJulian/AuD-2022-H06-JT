@@ -13,8 +13,11 @@ public class MyListsHashMap<K, V> implements MyMap<K, V> {
      */
     @SuppressWarnings("unchecked")
     public MyListsHashMap(Fct2Int<K> hashFunction) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        this.table = new LinkedList[hashFunction.getTableSize()];
+        for (int i = 0; i < this.table.length; i++) {
+            this.table[i] = new LinkedList<>();
+        }
+        this.hashFunction = hashFunction;
     }
 
     @Override

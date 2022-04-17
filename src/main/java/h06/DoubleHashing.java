@@ -20,8 +20,8 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      * @param fct2 The second hash function to be used in upcoming tasks.
      */
     public DoubleHashing(Hash2IndexFct<T> fct1, Hash2IndexFct<T> fct2) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        this.fct1 = fct1;
+        this.fct2 = fct2;
     }
 
     /**
@@ -45,8 +45,7 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      */
     @Override
     public int getTableSize() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        return fct1.getTableSize();
     }
 
     /**
@@ -56,7 +55,7 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      */
     @Override
     public void setTableSize(int tableSize) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        fct1.setTableSize(tableSize);
+        fct2.setTableSize(tableSize);
     }
 }

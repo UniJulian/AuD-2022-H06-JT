@@ -3,11 +3,11 @@ package h06;
 public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
     private final double resizeThreshold;
     private final double resizeFactor;
-    private final BinaryFct2Int<K> hashFunction;
     private K[] theKeys;
     private V[] theValues;
     private boolean[] occupiedSinceLastRehash;
     private int occupiedCount = 0;
+    private final BinaryFct2Int<K> hashFunction;
 
     /**
      * Create a new index hopping hash map.
@@ -19,8 +19,12 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
      */
     @SuppressWarnings("unchecked")
     public MyIndexHoppingHashMap(int initialSize, double resizeFactor, double resizeThreshold, BinaryFct2Int<K> hashFunction) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        this.theKeys = (K[]) new Object[initialSize];
+        this.theValues = (V[]) new Object[initialSize];
+        this.occupiedSinceLastRehash = new boolean[initialSize];
+        this.resizeFactor = resizeFactor;
+        this.resizeThreshold = resizeThreshold;
+        this.hashFunction = hashFunction;
     }
 
     @Override

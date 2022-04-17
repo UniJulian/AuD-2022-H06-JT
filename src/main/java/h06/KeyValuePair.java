@@ -18,8 +18,8 @@ public class KeyValuePair<K, V> {
      * @param value The value of the new key value pair.
      */
     public KeyValuePair(K key, V value) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        this.key = key;
+        this.value = value;
     }
 
     /**
@@ -28,8 +28,7 @@ public class KeyValuePair<K, V> {
      * @return The key.
      */
     public K getKey() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        return this.key;
     }
 
     /**
@@ -38,8 +37,7 @@ public class KeyValuePair<K, V> {
      * @return The value.
      */
     public V getValue() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        return this.value;
     }
 
     /**
@@ -48,7 +46,6 @@ public class KeyValuePair<K, V> {
      * @param newValue The new value.
      */
     public void setValue(V newValue) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        this.value = newValue;
     }
 }
