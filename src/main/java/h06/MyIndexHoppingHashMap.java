@@ -1,5 +1,7 @@
 package h06;
 
+import org.jetbrains.annotations.Nullable;
+
 public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
     private final double resizeThreshold;
     private final double resizeFactor;
@@ -22,33 +24,31 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
         this.theKeys = (K[]) new Object[initialSize];
         this.theValues = (V[]) new Object[initialSize];
         this.occupiedSinceLastRehash = new boolean[initialSize];
+
         this.resizeFactor = resizeFactor;
         this.resizeThreshold = resizeThreshold;
         this.hashFunction = hashFunction;
+        this.hashFunction.setTableSize(initialSize);
     }
 
     @Override
     public boolean containsKey(K key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
     }
 
     @Override
-    public V getValue(K key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public @Nullable V getValue(K key) {
+        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
     }
 
     @Override
-    public V put(K key, V value) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public @Nullable V put(K key, V value) {
+        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
     }
 
     @Override
-    public V remove(K key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public @Nullable V remove(K key) {
+        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
     }
 
     /***
@@ -57,7 +57,6 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
      */
     @SuppressWarnings("unchecked")
     private void rehash() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
     }
 }

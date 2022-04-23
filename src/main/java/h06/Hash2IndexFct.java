@@ -30,8 +30,7 @@ public class Hash2IndexFct<T> implements Fct2Int<T> {
      */
     @Override
     public int apply(T key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H1 - not implemented"); // TODO: H1 - remove if implemented
     }
 
     /**

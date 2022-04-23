@@ -1,5 +1,7 @@
 package h06;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.LinkedList;
 
 public class MyListsHashMap<K, V> implements MyMap<K, V> {
@@ -22,25 +24,21 @@ public class MyListsHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public boolean containsKey(K key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H4 - not implemented"); // TODO: H4 - remove if implemented
     }
 
     @Override
-    public V getValue(K key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public @Nullable V getValue(K key) {
+        throw new RuntimeException("H4 - not implemented"); // TODO: H4 - remove if implemented
     }
 
     @Override
-    public V put(K key, V value) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public @Nullable V put(K key, V value) {
+        throw new RuntimeException("H4 - not implemented"); // TODO: H4 - remove if implemented
     }
 
     @Override
-    public V remove(K key) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public @Nullable V remove(K key) {
+        throw new RuntimeException("H4 - not implemented"); // TODO: H4 - remove if implemented
     }
 }

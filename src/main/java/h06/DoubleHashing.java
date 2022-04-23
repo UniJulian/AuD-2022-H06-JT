@@ -34,8 +34,7 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      */
     @Override
     public int apply(T key, int factor) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H1 - not implemented"); // TODO: H1 - remove if implemented
     }
 
     /**

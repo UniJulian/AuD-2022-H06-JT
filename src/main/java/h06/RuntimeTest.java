@@ -12,8 +12,7 @@ public class RuntimeTest {
      * @return Two test data sets of 1,000 dates each.
      */
     public static MyDate[][] generateTestdata() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H6 - not implemented"); // TODO: H6 - remove if implemented
     }
 
     /**
@@ -27,8 +26,7 @@ public class RuntimeTest {
      * @return A test set.
      */
     public static TestSet<MyDate> createTestSet(int i, int j, int k, int l, MyDate[][] testData) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H6 - not implemented"); // TODO: H6 - remove if implemented
     }
 
     /**
@@ -37,7 +35,6 @@ public class RuntimeTest {
      * @param testSet The test set to test.
      */
     public static void test(TestSet<MyDate> testSet) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H6 - not implemented"); // TODO: H6 - remove if implemented
     }
 }

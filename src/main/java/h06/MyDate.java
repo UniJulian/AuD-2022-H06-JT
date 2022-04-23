@@ -1,5 +1,7 @@
 package h06;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Calendar;
 
 public class MyDate {
@@ -25,79 +27,64 @@ public class MyDate {
      * @param randomBoolean The boolean value used to determine the calculation of the hash value.
      */
     public MyDate(Calendar date, boolean randomBoolean) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H5 - not implemented"); // TODO: H5 - remove if implemented
     }
 
     /**
      * Returns the year of the date stored in this object.
-     *
      * @return The year of the date stored in this object.
      */
-    public int getYear() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public int getYear()
+    {
+        return year;
     }
 
     /**
      * Returns the month of the date stored in this object.
-     *
      * @return The month of the date stored in this object.
      */
-    public int getMonth() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public int getMonth()
+    {
+        return month;
     }
 
     /**
      * Returns the day of month of the date stored in this object.
-     *
      * @return The day of month of the date stored in this object.
      */
-    public int getDay() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public int getDay()
+    {
+        return day;
     }
 
     /**
      * Returns the hour of the date stored in this object.
-     *
      * @return The hour of the date stored in this object.
      */
-    public int getHour() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public int getHour()
+    {
+        return hour;
     }
 
     /**
      * Returns the minute of the date stored in this object.
-     *
      * @return The minute of the date stored in this object.
      */
-    public int getMinute() {
-        // TODO
-        throw new RuntimeException("Not implemented");
-    }
+    public int getMinute() { return minute; }
 
     /**
      * Return the boolean value set in the constructor.
-     *
      * @return The boolean value set in the constructor.
      */
-    public boolean getBool() {
-        // TODO
-        throw new RuntimeException("Not implemented");
-    }
+    public boolean getBool() { return randomBoolean; }
 
     @Override
     public int hashCode() {
-        // TODO
-        throw new RuntimeException("Not implemented");
+        throw new RuntimeException("H5 - not implemented"); // TODO: H5 - remove if implemented
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // TODO
-        throw new RuntimeException("Not implemented");
+    public boolean equals(@Nullable Object obj) {
+        throw new RuntimeException("H5 - not implemented"); // TODO: H5 - remove if implemented
     }
 }
