@@ -7,8 +7,8 @@ public class LinearProbing<T> implements BinaryFct2Int<T> {
     private final Fct2Int<T> hashFct;
 
 	/**
-	 * Creates an object of the LinearProbingTableIndexFct class.
-	 * The object uses the hash function specified in the "internalHashFunction" parameter.
+	 * Creates an object of the LinearProbing class.
+	 * The object uses the hash function specified in the "hashFct" parameter.
 	 * Therefore, the hash function is stored in the object attribute of the same name for further use.
      *
 	 * @param hashFct The hash function to be used in upcoming tasks.
