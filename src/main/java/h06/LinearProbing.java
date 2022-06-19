@@ -23,7 +23,7 @@ public class LinearProbing<T> implements BinaryFct2Int<T> {
      *
 	 * @param key    The key from which to calculate the hash value.
 	 * @param offset The offset to add.
-	 * @return ModuloUtil.addModulo(hash(key), offset, max(tableSize, offset)) % tableSize
+	 * @return See exercise sheet.
 	 */
 	@Override
 	public int apply(T key, int offset) {

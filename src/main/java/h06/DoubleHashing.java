@@ -30,7 +30,7 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      *
      * @param key    The key from which to calculate the hash value.
      * @param factor The factor that is multiplied by the second hash function result.
-     * @return ModuloUtil.addModulo(hash0 (key), factor * hash1(key), max(tableSize, factor * hash1(key)) % tableSize
+     * @return See exercise sheet.
      */
     @Override
     public int apply(T key, int factor) {

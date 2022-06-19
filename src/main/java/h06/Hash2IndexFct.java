@@ -26,7 +26,7 @@ public class Hash2IndexFct<T> implements Fct2Int<T> {
      * Calculates the hash value of parameter "key".
      *
      * @param key The key from which to calculate the hash value.
-     * @return key.hashCode() modulo tableSize
+     * @return See exercise sheet.
      */
     @Override
     public int apply(T key) {
