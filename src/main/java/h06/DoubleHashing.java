@@ -34,7 +34,7 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      */
     @Override
     public int apply(T key, int factor) {
-        throw new RuntimeException("H1 - not implemented"); // TODO: H1 - remove if implemented
+        return Math.floorMod(fct1.apply(key) + fct2.apply(key) * factor ,getTableSize() );
     }
 
     /**

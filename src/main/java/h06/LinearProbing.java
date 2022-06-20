@@ -27,7 +27,7 @@ public class LinearProbing<T> implements BinaryFct2Int<T> {
 	 */
 	@Override
 	public int apply(T key, int offset) {
-        throw new RuntimeException("H1 - not implemented"); // TODO: H1 - remove if implemented
+        return Math.floorMod(hashFct.apply(key) + offset, getTableSize());
 	}
 
     /**
