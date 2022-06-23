@@ -34,7 +34,8 @@ public class DoubleHashing<T> implements BinaryFct2Int<T> {
      */
     @Override
     public int apply(T key, int factor) {
-        return Math.floorMod(fct1.apply(key) + fct2.apply(key) * factor ,getTableSize() );
+        int tableSize = getTableSize();
+        return Math.floorMod(Math.floorMod(fct1.apply(key),tableSize) + Math.floorMod(fct2.apply(key),tableSize) * Math.floorMod(factor,tableSize)  ,tableSize );
     }
 
     /**

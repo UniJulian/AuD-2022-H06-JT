@@ -31,9 +31,27 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
         this.hashFunction.setTableSize(initialSize);
     }
 
+    /**
+     * searches the corresponding index to a given key
+     *
+     * HelperFct
+     * @param key to be searched Key
+     * @return the index
+     */
+    private int indexSearcher(K key){
+        if(hashFunction instanceof DoubleHashing){
+            return hashFunction.apply(key,1); // resizeFactor?
+        }
+        if(hashFunction instanceof LinearProbing){
+            return hashFunction.apply(key,1); // woher offset?
+        }
+        throw new IllegalArgumentException(String.valueOf(key));
+
+    }
+
     @Override
     public boolean containsKey(K key) {
-        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
+        return theKeys[indexSearcher(key)] != null;
     }
 
     @Override
