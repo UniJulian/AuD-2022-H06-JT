@@ -39,34 +39,65 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
      * @return the index
      */
     private int indexSearcher(K key){
-        if(hashFunction instanceof DoubleHashing){
-            return hashFunction.apply(key,1); // resizeFactor?
-        }
-        if(hashFunction instanceof LinearProbing){
-            return hashFunction.apply(key,1); // woher offset?
-        }
-        throw new IllegalArgumentException(String.valueOf(key));
+        int i = 0;
 
+        while(theKeys[hashFunction.apply(key, i)] != null) {
+            if(theKeys[hashFunction.apply(key, i)].equals(key))
+                return hashFunction.apply(key, i);
+            i++;
+        }
+        return -1;
+    }
+    private void changeValue(int index, K key, V value, boolean bol, int occ) {
+        occupiedSinceLastRehash[index] = bol;
+        theValues[index] = value;
+        theKeys[index] = key;
+        occupiedCount += occ;
     }
 
     @Override
     public boolean containsKey(K key) {
-        return theKeys[indexSearcher(key)] != null;
+        return indexSearcher(key) != -1;
     }
 
     @Override
     public @Nullable V getValue(K key) {
-        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
+        int index = indexSearcher(key);
+        if(index == -1)
+            throw new IllegalArgumentException();
+        return theValues[index];
     }
 
     @Override
     public @Nullable V put(K key, V value) {
-        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
+        int i = 0;
+        while(theKeys[hashFunction.apply(key, i)] != null) {
+            if(theKeys[hashFunction.apply(key, i)].equals(key)){
+                V returnVal = theValues[hashFunction.apply(key, i)];
+                changeValue(hashFunction.apply(key, i),key,value,true,0);
+                return returnVal;
+            }
+            i++;
+        }
+        changeValue(hashFunction.apply(key, i),key,value,true,1);
+        return null;
     }
 
     @Override
     public @Nullable V remove(K key) {
-        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
+        int i = 0;
+        if((theKeys.length * resizeFactor) > (occupiedCount + 1))
+            rehash();
+
+        while(theKeys[hashFunction.apply(key, i)] != null) {
+            if(theKeys[hashFunction.apply(key, i)].equals(key)){
+                V returnVal = theValues[hashFunction.apply(key, i)];
+                changeValue(hashFunction.apply(key, i),null,null,false,-1);
+                return returnVal;
+            }
+            i++;
+        }
+        return null;
     }
 
     /***
@@ -75,6 +106,11 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
      */
     @SuppressWarnings("unchecked")
     private void rehash() {
-        throw new RuntimeException("H3 - not implemented"); // TODO: H3 - remove if implemented
+
+        int newSize = (int) Math.round(theKeys.length * resizeFactor);
+
+
+
+
     }
 }
