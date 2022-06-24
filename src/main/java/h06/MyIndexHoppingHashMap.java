@@ -2,6 +2,8 @@ package h06;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
     private final double resizeThreshold;
     private final double resizeFactor;
@@ -64,13 +66,18 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
     public @Nullable V getValue(K key) {
         int index = indexSearcher(key);
         if(index == -1)
-            throw new IllegalArgumentException();
+            return null;
         return theValues[index];
     }
 
     @Override
     public @Nullable V put(K key, V value) {
+        if(key == null)
+            return null;
         int i = 0;
+        if((theKeys.length * resizeThreshold) < (occupiedCount + 1))
+            rehash();
+
         while(theKeys[hashFunction.apply(key, i)] != null) {
             if(theKeys[hashFunction.apply(key, i)].equals(key)){
                 V returnVal = theValues[hashFunction.apply(key, i)];
@@ -86,13 +93,11 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
     @Override
     public @Nullable V remove(K key) {
         int i = 0;
-        if((theKeys.length * resizeFactor) < (occupiedCount + 1))
-            rehash();
 
         while(theKeys[hashFunction.apply(key, i)] != null) {
             if(theKeys[hashFunction.apply(key, i)].equals(key)){
                 V returnVal = theValues[hashFunction.apply(key, i)];
-                changeValue(hashFunction.apply(key, i),null,null,false,-1);
+                changeValue(hashFunction.apply(key, i),null,null,false,-1); // bol und occ not sure
                 return returnVal;
             }
             i++;
@@ -106,8 +111,26 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
      */
     @SuppressWarnings("unchecked")
     private void rehash() {
+        int newSize = (int) (theKeys.length * resizeFactor);
+        K[] theKeysOLD = theKeys;
+        V[] theValuesOLD = theValues;
+        boolean[] occupiedSinceLastRehashOLD = occupiedSinceLastRehash;
 
-        int newSize = (int) Math.round(theKeys.length * resizeFactor);
+        theKeys =(K[]) new Object[newSize];
+        theValues =(V[]) new Object[newSize];
+        occupiedSinceLastRehash = new boolean[newSize];
+        hashFunction.setTableSize(newSize);
+
+        for (int i = 0; i < theKeysOLD.length; i++) {
+            put(theKeysOLD[i],theValuesOLD[i]);
+        }
+
+        System.out.println(1);
+
+
+
+
+
 
 
 
