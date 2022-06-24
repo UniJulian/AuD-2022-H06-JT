@@ -86,7 +86,7 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
     @Override
     public @Nullable V remove(K key) {
         int i = 0;
-        if((theKeys.length * resizeFactor) > (occupiedCount + 1))
+        if((theKeys.length * resizeFactor) < (occupiedCount + 1))
             rehash();
 
         while(theKeys[hashFunction.apply(key, i)] != null) {
