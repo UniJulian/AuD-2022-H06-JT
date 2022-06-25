@@ -2,6 +2,11 @@ package h06;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,5 +33,19 @@ public class ExampleJUnitTest {
         assertEquals(23132*3,hopper.getValue(23132 * 214));
 
         assertEquals(2, 1 + 1);
+
     }
+
+    @Test
+    public void CalendarTest() {
+
+        MyDate[][] data = RuntimeTest.generateTestdata();
+
+
+        RuntimeTest.test(RuntimeTest.createTestSet(1,1,2,2,RuntimeTest.generateTestdata()));
+
+    }
+
+
+
 }

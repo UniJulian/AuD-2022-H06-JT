@@ -99,8 +99,17 @@ public class MyDate {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        if(obj == null)
+
+        if(obj == null || !(obj instanceof MyDate eq))
             return false;
-        return this.hashCode() == obj.hashCode();
+        return eq.year == this.year && eq.month == this.month && eq.day == this.day && eq.hour == this.hour && eq.minute == this.minute ;
+
+
+
+
+        /*
+        if(obj == null || !(obj instanceof MyDate))
+            return false;
+        return this.hashCode() == obj.hashCode();*/
     }
 }

@@ -64,7 +64,8 @@ public class MyListsHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public @Nullable V remove(K key) {
-        LinkedList<KeyValuePair<K,V>> list  = table[hashFunction.apply(key)];
+        int hash = hashFunction.apply(key);
+        LinkedList<KeyValuePair<K,V>> list  = table[hash];
         Iterator<KeyValuePair<K,V>> iti = list.iterator();
         KeyValuePair<K,V> currVal;
         V returnVal = null;
@@ -75,10 +76,15 @@ public class MyListsHashMap<K, V> implements MyMap<K, V> {
             currVal = iti.next();
             if(currVal.getKey().equals(key)){
                 returnVal = currVal.getValue();
-            }else
-                index++;
+            }else{
+                if(iti.hasNext())
+                    index++;
+            }
         }
-        table[hashFunction.apply(key)].remove(index);
+
+        table[hash].remove(index);
+
+
         return returnVal;
     }
 }

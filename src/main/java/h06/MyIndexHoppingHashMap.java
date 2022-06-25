@@ -42,16 +42,16 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
      */
     private int indexSearcher(K key){
         int i = 0;
-
-        while(theKeys[hashFunction.apply(key, i)] != null) {
-            if(theKeys[hashFunction.apply(key, i)].equals(key))
-                return hashFunction.apply(key, i);
+        int hash;
+        do{
+            hash = hashFunction.apply(key, i);
+            if(theKeys[hash].equals(key))
+                return hash;
             i++;
-        }
+        }while(occupiedSinceLastRehash[hash]);
         return -1;
     }
-    private void changeValue(int index, K key, V value, boolean bol, int occ) {
-        occupiedSinceLastRehash[index] = bol;
+    private void changeValue(int index, K key, V value, int occ) {
         theValues[index] = value;
         theKeys[index] = key;
         occupiedCount += occ;
@@ -75,34 +75,57 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
         if(key == null)
             return null;
         int i = 0;
+        int hash;
+        K currKey;
+
         if((theKeys.length * resizeThreshold) < (occupiedCount + 1))
             rehash();
 
-        while(theKeys[hashFunction.apply(key, i)] != null) {
-            if(theKeys[hashFunction.apply(key, i)].equals(key)){
-                V returnVal = theValues[hashFunction.apply(key, i)];
-                changeValue(hashFunction.apply(key, i),key,value,true,0);
+        do{
+            hash= hashFunction.apply(key, i);
+            currKey = theKeys[hash];
+
+            if(currKey == null)
+                break;
+            if(currKey.equals(key)){
+
+                V returnVal = theValues[hash];
+                changeValue(hash,key,value,0);
                 return returnVal;
             }
+            occupiedSinceLastRehash[hash] = true;
             i++;
-        }
-        changeValue(hashFunction.apply(key, i),key,value,true,1);
+        } while(true);
+
+        changeValue(hash,key,value,1);
         return null;
     }
 
     @Override
     public @Nullable V remove(K key) {
         int i = 0;
+        int hash;
+        K currKey;
+        int prevHash = -1;
 
-        while(theKeys[hashFunction.apply(key, i)] != null) {
-            if(theKeys[hashFunction.apply(key, i)].equals(key)){
-                V returnVal = theValues[hashFunction.apply(key, i)];
-                changeValue(hashFunction.apply(key, i),null,null,false,-1); // bol und occ not sure
+        do{
+            hash = hashFunction.apply(key, i);
+            currKey = theKeys[hash];
+            if(currKey == null){
+                if(!occupiedSinceLastRehash[hash])
+                    return null;
+            }
+            else if(currKey.equals(key)){
+                V returnVal = theValues[hash];
+                changeValue(hash,null,null,-1);
+                if(!occupiedSinceLastRehash[hash] && (prevHash != -1))
+                    occupiedSinceLastRehash[prevHash] = false;
                 return returnVal;
             }
             i++;
-        }
-        return null;
+            prevHash = hash;
+        } while(true);
+
     }
 
     /***
@@ -114,12 +137,12 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
         int newSize = (int) (theKeys.length * resizeFactor);
         K[] theKeysOLD = theKeys;
         V[] theValuesOLD = theValues;
-        boolean[] occupiedSinceLastRehashOLD = occupiedSinceLastRehash;
 
         theKeys =(K[]) new Object[newSize];
         theValues =(V[]) new Object[newSize];
         occupiedSinceLastRehash = new boolean[newSize];
         hashFunction.setTableSize(newSize);
+        occupiedCount = 0;
 
         for (int i = 0; i < theKeysOLD.length; i++) {
             put(theKeysOLD[i],theValuesOLD[i]);
