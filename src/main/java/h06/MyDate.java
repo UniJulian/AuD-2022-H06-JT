@@ -27,7 +27,14 @@ public class MyDate {
      * @param randomBoolean The boolean value used to determine the calculation of the hash value.
      */
     public MyDate(Calendar date, boolean randomBoolean) {
-        throw new RuntimeException("H5 - not implemented"); // TODO: H5 - remove if implemented
+
+        year = date.get(Calendar.YEAR);
+        month = date.get(Calendar.MONTH);
+        day = date.get(Calendar.DAY_OF_MONTH);
+        hour = date.get(Calendar.HOUR);
+        minute = date.get(Calendar.MINUTE);
+        this.randomBoolean = randomBoolean;
+
     }
 
     /**
@@ -80,11 +87,20 @@ public class MyDate {
 
     @Override
     public int hashCode() {
-        throw new RuntimeException("H5 - not implemented"); // TODO: H5 - remove if implemented
+        long result;
+        if(randomBoolean)
+            result = year* coefficientYear + month * coefficientMonth + day
+                * coefficientDay + hour * coefficientHour + minute * coefficientMinute;
+        else
+            result = (year + month + day + hour + minute)* coefficientSum;
+
+        return Math.floorMod(result,Integer.MAX_VALUE);
     }
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        throw new RuntimeException("H5 - not implemented"); // TODO: H5 - remove if implemented
+        if(obj == null)
+            return false;
+        return this.hashCode() == obj.hashCode();
     }
 }
