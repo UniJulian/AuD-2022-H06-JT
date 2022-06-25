@@ -124,16 +124,5 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
         for (int i = 0; i < theKeysOLD.length; i++) {
             put(theKeysOLD[i],theValuesOLD[i]);
         }
-
-        System.out.println(1);
-
-
-
-
-
-
-
-
-
     }
 }
