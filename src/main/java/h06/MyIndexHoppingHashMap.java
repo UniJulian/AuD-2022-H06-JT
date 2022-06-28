@@ -45,6 +45,8 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
         int hash;
         do{
             hash = hashFunction.apply(key, i);
+            if(theKeys[hash] == null)
+                continue;
             if(theKeys[hash].equals(key))
                 return hash;
             i++;
