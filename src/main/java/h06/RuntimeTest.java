@@ -18,22 +18,21 @@ public class RuntimeTest {
     public static MyDate[][] generateTestdata() {
         MyDate[][] data = new MyDate[2][TEST_SET_SIZE];
 
-        Random rand = new Random(555);
 
         for (int i = 0; i < TEST_SET_SIZE; i++) {
             int exde = 0;
-            exde = rand.nextInt(0,12);
+            exde = ThreadLocalRandom.current().nextInt(0,12);
             int y = 30;
             if((exde == 0 )|| (exde == 2 )|| (exde == 4) ||(exde == 6) ||(exde == 7) ||(exde == 9) ||(exde == 11))
                 y = 31;
             if(exde == 1)
                 y = 28;
             GregorianCalendar calendar = new GregorianCalendar( // ist stumpf ich weiß I'm sorry
-                rand.nextInt(1970,2023)
+                ThreadLocalRandom.current().nextInt(1970,2023)
                 ,exde
-                ,rand.nextInt(0,y)
-                ,rand.nextInt(0,24)
-                ,rand.nextInt(0,60));
+                ,ThreadLocalRandom.current().nextInt(0,y)
+                ,ThreadLocalRandom.current().nextInt(0,24)
+                ,ThreadLocalRandom.current().nextInt(0,60));
             data[0][i] = new MyDate(calendar,true);
             data[1][i] = new MyDate(calendar,false);
         }
@@ -92,6 +91,8 @@ public class RuntimeTest {
         MyMap<MyDate,MyDate> map = testSet.getHashTable();
         int counter = 0;
         int counter2 = 0;
+        int counter3 = 0;
+        MyDate[] values = new MyDate[750];
 
         for (int i = 0; i < 750; i++) {
             map.put(data[i],data[i]);
@@ -100,6 +101,14 @@ public class RuntimeTest {
         for (int i = 0; i <750; i++) {
             if(map.containsKey(data[i]))
                 counter++;
+        }
+
+        for (int i = 0; i <750; i++) {
+            if(map.containsKey(data[i])){
+                values[i] = map.getValue(data[i]);
+                counter3++;
+            }
+
         }
         for (int i = 0; i <750; i++){
             MyDate dat = map.remove(data[i]);
@@ -110,6 +119,7 @@ public class RuntimeTest {
 
         System.out.println(counter);
         System.out.println(counter2);
+        System.out.println(counter3);
 
 
     }

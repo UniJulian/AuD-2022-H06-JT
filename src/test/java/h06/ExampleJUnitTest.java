@@ -38,7 +38,7 @@ public class ExampleJUnitTest {
 
     @Test
     public void CalendarTest() {
-        RuntimeTest.test(RuntimeTest.createTestSet(2,1,2,2,RuntimeTest.generateTestdata()));
+        RuntimeTest.test(RuntimeTest.createTestSet(2,2,1,2,RuntimeTest.generateTestdata()));
 
     }
 
