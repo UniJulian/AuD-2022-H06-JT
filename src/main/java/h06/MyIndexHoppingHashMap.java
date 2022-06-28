@@ -74,6 +74,7 @@ public class MyIndexHoppingHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public @Nullable V put(K key, V value) {
+
         if(key == null)
             return null;
         int i = 0;

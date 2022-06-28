@@ -89,7 +89,7 @@ public class MyDate {
     public int hashCode() {
         long result;
         if(randomBoolean)
-            result = year* coefficientYear + month * coefficientMonth + day
+            result = Math.floorMod(year*  coefficientYear,Integer.MAX_VALUE) + month * coefficientMonth + day
                 * coefficientDay + hour * coefficientHour + minute * coefficientMinute;
         else
             result = (year + month + day + hour + minute)* coefficientSum;
@@ -99,8 +99,8 @@ public class MyDate {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        /*
-        if(obj == null )
+
+        /*if(obj == null )
             return false;
         if(!(obj instanceof MyDate eq))
             return false;
